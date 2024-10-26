@@ -37,12 +37,10 @@ public class HomeSecondaryTest {
         secPage.AssertClientReferencecIs_NAE584747(driver);
     }
 
-   /*
-      feature:  And the user verifies the client request details
     @And("the user verifies the client request details")
     public void theUserVerifiesTheClientRequestDetails() {
         secPage.AssertClientRequestIsCR04N01M10244980554(driver);
-    }*/
+    }
 
     @Then("the status should be Pending")
     public void theStatusShouldBePending() {
