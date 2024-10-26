@@ -47,6 +47,10 @@
                 <version>2.22.0</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <runOrder>Alphabetical</runOrder>
+                    <includes> <!-- Specify the test runner classes you want to include -->
+                        <include>**/*TestRunner.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>

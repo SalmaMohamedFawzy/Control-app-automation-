@@ -8,10 +8,10 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
         glue = {"Tests", "Hooks"}  ,            // Path to your step definitions
        plugin = {
                    "pretty",
-                   //"html:target/cucumber.html",
+                    "html:target/HtmlBasicReport.html",
                    "json:target/cucumber.json" ,
-                  // "junit:target/cukes.xml",
-                 //  "rerun:target/rerun.txt"
+                   "junit:target/cukes.xml",
+                    "rerun:target/rerun.txt"
                },
         tags = "@test"
 )
