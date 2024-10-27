@@ -5,10 +5,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import static Hooks.hooks.driver;
 
 
-public class HomeSecondaryTest {
+public class SecondPageSteps {
     SecondSelectedPage secPage = new SecondSelectedPage();
 
     /*@Test(dependsOnMethods = "Tests.Home.loginTest")
@@ -31,6 +34,7 @@ public class HomeSecondaryTest {
             throw new RuntimeException("WebDriver is not initialized in SecTest!");
         }
     }
+    //select the test-a1 from the list
 
     @When("the user verifies the client reference")
     public void theUserVerifiesTheClientReference() {
@@ -50,5 +54,12 @@ public class HomeSecondaryTest {
     @And("the type should be B2C Delivery")
     public void theTypeShouldBeB2CDelivery() {
         secPage.AssertTypeIsb2cdelivery(driver);
+    }
+
+    //return to home
+    @And("I return to the homepage")
+    public void returnToHome() {
+        WebElement homeButton = driver.findElement(By.xpath("//*[@id='wrapper']/div[1]/div[2]/a/img"));
+        homeButton.click();
     }
 }

@@ -7,3 +7,4 @@ Feature: Verify Client Reference and Request Details
     And the user verifies the client request details
     Then the status should be Pending
     And the type should be B2C Delivery
+    And I return to the homepage

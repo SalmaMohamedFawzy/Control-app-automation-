@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 
 import static Hooks.hooks.driver;
 
-public class Home {
+public class HomeSteps {
 
     HomePage homePge = new HomePage();
 
