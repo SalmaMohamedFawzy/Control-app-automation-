@@ -13,7 +13,8 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class SecondSelectedPage {
 
-    public void AssertClientReferencecIs_NAE584747(WebDriver driver){
+    public void AssertClientReferencecIs_NAE584747(WebDriver driver)
+    {
         Screenshot screenshotObject=new Screenshot(driver);
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         SoftAssert softAssert = new SoftAssert();
