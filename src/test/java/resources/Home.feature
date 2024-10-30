@@ -8,3 +8,4 @@ Feature: Homepage Login and Verification
     And the service should be B2C Delivery
     And the Home status should be Pending
     And the user clicks on the third item on the page
+    And complete soft assertion check

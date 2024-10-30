@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
@@ -18,7 +19,7 @@ import static Hooks.hooks.driver;
 
 public class SecondPageSteps {
     SecondSelectedPage secPage = new SecondSelectedPage();
-
+    SoftAssert softAssert = new SoftAssert();
     /*@Test(dependsOnMethods = "Tests.Home.loginTest")
     @Description("Second test to verify client reference and request details")
     @Severity(SeverityLevel.NORMAL)
@@ -42,32 +43,27 @@ public class SecondPageSteps {
     //select the test-a1 from the list
     /*write its code*/
 
-  /*
-  When the user verifies the client reference
+
 
    @When("the user verifies the client reference")
     public void theUserVerifiesTheClientReference() {
-        secPage.AssertClientReferencecIs_NAE584747(driver);
+        secPage.AssertClientReferencecIs_NAE584747(driver,softAssert);
     }
-
-    And the user verifies the client request details
 
     @And("the user verifies the client request details")
     public void theUserVerifiesTheClientRequestDetails() {
-        secPage.AssertClientRequestIsCR04N01M10244980554(driver);
+        secPage.AssertClientRequestIsCR04N01M10244980554(driver,softAssert);
     }
 
-    Then the status should be Pending
     @Then("the status should be Pending")
     public void theStatusShouldBePending() {
-        secPage.AssertStatusIsPending(driver);
+        secPage.AssertStatusIsPending(driver,softAssert);
     }
 
-    And the type should be B2C Delivery
     @And("the type should be B2C Delivery")
     public void theTypeShouldBeB2CDelivery() {
-        secPage.AssertTypeIsb2cdelivery(driver);
-    } */
+        secPage.AssertTypeIsb2cdelivery(driver,softAssert);
+    }
 
     //return to home
     @And("I return to the homepage")
@@ -81,7 +77,7 @@ public class SecondPageSteps {
     public void IshouldSeeHomeLogo() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement homeLogo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#wrapper > div.jsx-1086676435.headerCtr > div.jsx-1086676435.logoSearchWrapper")));
-        Assert.assertTrue(homeLogo.isDisplayed(),"Homepage logo is not visible.");
+        softAssert.assertTrue(homeLogo.isDisplayed(),"Homepage logo is not visible.");
 
     }
 }
