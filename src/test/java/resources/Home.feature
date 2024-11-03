@@ -6,6 +6,7 @@ Feature: Homepage Login and Verification
     When the user logs in manually and select TEST-A1
     Then the hub menu should be visible and assert that it is TEST_A1
     And the service should be B2C Delivery
-    And the Home status should be Pending
+    And the home status should be Pending
+    And the country should be AE
     And the user clicks on the third item on the page
     And complete soft assertion check

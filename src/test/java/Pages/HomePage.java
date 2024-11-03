@@ -98,6 +98,38 @@ public class HomePage {
     }
 }
 
+
+    public void SelectAEcountryZoneAndAssert(WebDriver driver,SoftAssert softAssert){
+        Screenshot screenshotObject=new Screenshot(driver);
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+     // Step 1: Click the "Country Zone" dropdown to reveal the options
+        By countryZoneDropdownLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[5]/span[2]/div/div/div[1]/div[1]");
+        WebElement countryZoneDropdown = wait.until(ExpectedConditions.elementToBeClickable(countryZoneDropdownLocator));
+        countryZoneDropdown.click();
+
+   // Step 2: Select the "AE" option from the dropdown
+        By aeOptionLocator = By.xpath("//*[normalize-space(text())='AE']");
+        WebElement aeOption = wait.until(ExpectedConditions.visibilityOfElementLocated(aeOptionLocator));
+        aeOption.click();
+
+        By pageContentLocator = By.xpath("//*[@id=\"wrapper\"]/div[2]/div[3]/div[2]/div[2]/div/div[1]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocator));
+
+         //assert selected option & Re-locate and check if "AE" is selected in the dropdown
+        countryZoneDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(countryZoneDropdownLocator));
+        String selectedCountry = countryZoneDropdown.getText();
+        try{
+            softAssert.assertTrue(selectedCountry.contains("AE"), "The selected country is not 'AE'.");
+            }
+        catch(AssertionError e)
+        {
+            screenshotObject.takeScreenshot("Country_AE_Selection_Failure");
+            throw e;
+        }
+    }
+
+
+
     public void ClickOnThirdItenInThePage(WebDriver driver){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
     WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/table/tbody/tr[3]/td[1]")));

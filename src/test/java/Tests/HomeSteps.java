@@ -52,9 +52,13 @@ public class HomeSteps {
         homePge.AssertThat_Result_inTheSpecifiedColumnIsB2CDelivery(driver,softAssert);
     }
 
-    @Then("the Home status should be Pending")
+    @Then("the home status should be Pending")
     public void the_home_status_should_be_pending() {
        homePge.AssertThatStatusIsPending(driver,softAssert);
+    }
+    @And("the country should be AE")
+    public void CountryAEselectionAndAssertion() {
+        homePge.SelectAEcountryZoneAndAssert(driver,softAssert);
     }
 
     @And("the user clicks on the third item on the page")
