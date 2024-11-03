@@ -35,9 +35,10 @@ public class HomeSteps {
        homePge.GoToControlApp(driver);
    }
 
-    @When("the user logs in manually")
-    public void the_user_logs_in_manually() throws InterruptedException {
+    @When("the user logs in manually and select TEST-A1")
+    public void the_user_logs_in_manually_and_select_TESTA1() throws InterruptedException {
         homePge.LoginManually(driver);
+        homePge.ClickOnTEST_A1hub(driver);
     }
 
     @Then("the hub menu should be visible and assert that it is TEST_A1")
@@ -47,12 +48,13 @@ public class HomeSteps {
 
     @Then("the service should be B2C Delivery")
     public void the_service_should_be_b2c_delivery() {
-        homePge.AssertThatServiceIsB2CDelivery(driver,softAssert);
+        homePge.AssertThat_Selected_ServiceIsB2CDelivery(driver,softAssert);
+        homePge.AssertThat_Result_inTheSpecifiedColumnIsB2CDelivery(driver,softAssert);
     }
 
     @Then("the Home status should be Pending")
     public void the_home_status_should_be_pending() {
-        homePge.AssertThatStatusIsPending(driver,softAssert);
+       homePge.AssertThatStatusIsPending(driver,softAssert);
     }
 
     @And("the user clicks on the third item on the page")

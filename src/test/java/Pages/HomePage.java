@@ -4,10 +4,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import screens.Screenshot;
 
 import java.time.Duration;
+import java.util.List;
 
 public class HomePage {
 
@@ -19,7 +21,20 @@ public class HomePage {
         System.out.println("Please log in manually. The test will continue");
         Thread.sleep(70000);
     }
+    public void ClickOnTEST_A1hub(WebDriver driver) {
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Step 1: Click the dropdown to reveal the list
+        By dropdownMenuLocator = By.xpath("//*[@id='wrapper']/div[1]/div[3]/div[1]/div/div/div/div[1]/div[1]");
+        WebElement dropdownMenu = wait.until(ExpectedConditions.elementToBeClickable(dropdownMenuLocator));
+        dropdownMenu.click();
 
+        // Step 2: Select the "TEST-A1" option
+        By testA1OptionLocator = By.xpath("//*[text()='TEST-A1']");
+        WebElement testA1Option = wait.until(ExpectedConditions.visibilityOfElementLocated(testA1OptionLocator));
+        testA1Option.click();
+
+        wait.until(ExpectedConditions.textToBePresentInElement(dropdownMenu, "TEST-A1"));
+    }
 
     public void waitHubMenuVisiblityANDassertThatHubIsTEST_A1(WebDriver driver, SoftAssert softAssert) {
         Screenshot screenshotObject=new Screenshot(driver);
@@ -36,7 +51,7 @@ public class HomePage {
         }
     }
 
-    public void AssertThatServiceIsB2CDelivery(WebDriver driver, SoftAssert softAssert) {
+    public void AssertThat_Selected_ServiceIsB2CDelivery(WebDriver driver, SoftAssert softAssert) {
         Screenshot screenshotObject=new Screenshot(driver);
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         //SoftAssert softAssert = new SoftAssert();
@@ -48,6 +63,21 @@ public class HomePage {
             screenshotObject.takeScreenshot("B2C_Selection_Failure");
             throw e;
         }
+    }
+    public void AssertThat_Result_inTheSpecifiedColumnIsB2CDelivery(WebDriver driver, SoftAssert softAssert) {
+        Screenshot screenshotObject=new Screenshot(driver);
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        By columnElementsLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/table/tbody/tr/td[2]");
+        List<WebElement> columnElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(columnElementsLocator));
+        for (WebElement element : columnElements) {
+            String cellText = element.getText();
+            try {
+                softAssert.assertTrue(cellText.contains("b2c"), "Found a non-B2C Delivery order: " + cellText);
+            }catch (AssertionError e) {
+                screenshotObject.takeScreenshot("B2C_Results_Failure");
+                throw e;
+            }
+            }
     }
     public void AssertThatStatusIsPending(WebDriver driver, SoftAssert softAssert) {
         Screenshot screenshotObject=new Screenshot(driver);
@@ -77,13 +107,5 @@ public class HomePage {
         System.out.println("Regular click failed, trying JavaScript click.");
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", targetElement);
     }}
-    /*to click on test_a1 from menu
-     try {
-            hubMenu.click();  // Regular click
-        } catch (org.openqa.selenium.ElementNotInteractableException e) {
-            System.out.println("Using JavaScript click due to ElementNotInteractableException");
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hubMenu);  // JS click as fallback
-        }
-        WebElement classElement = driver.findElement(By.className("css-12sut97"));
-        classElement.click();*/
+
 }
