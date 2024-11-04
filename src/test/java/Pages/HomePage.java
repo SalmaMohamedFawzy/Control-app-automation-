@@ -97,7 +97,70 @@ public class HomePage {
         throw e;
     }
 }
+    public void SelectDeliveryLegTypeAndAssert(WebDriver driver,SoftAssert softAssert) {
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        Screenshot screenshotObject=new Screenshot(driver);
+        // Step 1: Click the "Leg Type" menu to reveal options
+        By legTypeMenuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[3]/span[2]/div/div/div[1]/div[1]");
+        WebElement legTypeMenu = wait.until(ExpectedConditions.elementToBeClickable(legTypeMenuLocator));
+        legTypeMenu.click();
 
+        // Step 2: Select the "Delivery" option from the menu
+        By deliveryOptionLocator = By.xpath("//*[normalize-space(text())='Delivery']");
+        WebElement deliveryOption = wait.until(ExpectedConditions.visibilityOfElementLocated(deliveryOptionLocator));
+        deliveryOption.click();
+
+        // Step 3: Wait until the page or specific content is loaded
+        By pageContentLocatorr = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/div/div[1]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocatorr));
+        // Step 4: Re-locate the "Reason" menu to avoid stale element reference
+        legTypeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(legTypeMenuLocator));
+
+        //assert that delivery is selected
+        String selectedoption = legTypeMenu.getText();
+        try {
+            softAssert.assertTrue(selectedoption.contains("Delivery"), "The selected reason is not 'Delivery'.");
+        } catch(
+                AssertionError e)
+
+        {
+            screenshotObject.takeScreenshot("Delivery_Selection_Failure");
+            throw e;
+        }
+
+    }
+    public void SelectReasonAndAssert (WebDriver driver, SoftAssert softAssert) {
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        Screenshot screenshotObject=new Screenshot(driver);
+        // Step 1: Click the "Reason" menu to reveal options
+        By reasonMenuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[4]/span[2]/div/div/div[1]/div[1]");
+        WebElement reasonMenu = wait.until(ExpectedConditions.elementToBeClickable(reasonMenuLocator));
+        reasonMenu.click();
+
+        // Step 2: Select the "Rescheduled" option from the menu
+        By rescheduledOptionLocator = By.xpath("//*[normalize-space(text())='rescheduled']");
+        WebElement rescheduledOption = wait.until(ExpectedConditions.visibilityOfElementLocated(rescheduledOptionLocator));
+        rescheduledOption.click();
+
+        // Step 3: Wait until the page or specific content is loaded
+        By pageContentLocatorrr = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/div/div");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocatorrr));
+
+        // Step 4: Re-locate the "Reason" menu to avoid stale element reference
+        reasonMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(reasonMenuLocator));
+
+        // Step 4: Assert that "Rescheduled" is selected
+        String selectedReason = reasonMenu.getText();
+        try {
+            softAssert.assertTrue(selectedReason.contains("Rescheduled"), "The selected reason is not 'Rescheduled'.");
+        } catch(
+                AssertionError e)
+
+        {
+            screenshotObject.takeScreenshot("reason_reschedueled_Selection_Failure");
+            throw e;
+        }
+    }
 
     public void SelectAEcountryZoneAndAssert(WebDriver driver,SoftAssert softAssert){
         Screenshot screenshotObject=new Screenshot(driver);
@@ -130,9 +193,9 @@ public class HomePage {
 
 
 
-    public void ClickOnThirdItenInThePage(WebDriver driver){
+    public void ClickOnResultItem(WebDriver driver){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-    WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/table/tbody/tr[3]/td[1]")));
+    WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[2]/div[3]/div[2]/div[2]/table/tbody/tr/td[1]")));
         try {
         targetElement.click();
     } catch (ElementNotInteractableException e) {

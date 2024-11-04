@@ -14,19 +14,6 @@ public class HomeSteps {
     HomePage homePge = new HomePage();
     SoftAssert softAssert = new SoftAssert();
 
-    /* @Test
-    @Description("Test to manually log in and verify various aspects on the homepage")
-    @Severity(SeverityLevel.CRITICAL)
-    public void loginTest() throws InterruptedException {
-
-        homePge.GoToControlApp(driver);
-        homePge.LoginManually(driver);
-        homePge.waitHubMenuVisiblityANDassertThatHubIsTEST_A1(driver);
-        homePge.AssertThatServiceIsB2CDelivery(driver);
-        homePge.AssertThatStatusIsPending(driver);
-        homePge.ClickOnThirdItenInThePage(driver);
-        System.out.println("loginTest completed.");
-    }*/
    @Given("the user navigates to the control app")
    public void the_user_navigates_to_the_control_app() {
        if (driver == null) {
@@ -56,14 +43,24 @@ public class HomeSteps {
     public void the_home_status_should_be_pending() {
        homePge.AssertThatStatusIsPending(driver,softAssert);
     }
-    @And("the country should be AE")
+    @Then("the leg Type should be Delivery")
+    public void the_legType_should_be_delivery() {
+       homePge.SelectDeliveryLegTypeAndAssert(driver,softAssert);
+    }
+
+    @Then("the reason should be rescheduled")
+    public void the_reason_should_be_rescheduled() {
+       homePge.SelectReasonAndAssert(driver,softAssert);
+    }
+
+        @And("the country should be AE")
     public void CountryAEselectionAndAssertion() {
         homePge.SelectAEcountryZoneAndAssert(driver,softAssert);
     }
 
-    @And("the user clicks on the third item on the page")
-    public void the_user_clicks_on_the_third_item_on_the_page() {
-        homePge.ClickOnThirdItenInThePage(driver);
+    @And("the user clicks on the result item")
+    public void the_user_clicks_on_the_result_item() {
+        homePge.ClickOnResultItem(driver);
     }
 
     @And("complete soft assertion check")
