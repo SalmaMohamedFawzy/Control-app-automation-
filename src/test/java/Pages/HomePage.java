@@ -19,7 +19,12 @@ public class HomePage {
 
     public void LoginManually(WebDriver driver) throws InterruptedException {
         System.out.println("Please log in manually. The test will continue");
-        Thread.sleep(70000);
+       // Thread.sleep(70000);
+        // Replace Thread.sleep(70000) with an explicit wait
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70));
+        By elementLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]");
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+
     }
     public void ClickOnTEST_A1hub(WebDriver driver) {
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -110,9 +115,11 @@ public class HomePage {
         WebElement deliveryOption = wait.until(ExpectedConditions.visibilityOfElementLocated(deliveryOptionLocator));
         deliveryOption.click();
 
-        // Step 3: Wait until the page or specific content is loaded
+        /*Step 3: Wait until the page or specific content is loaded
         By pageContentLocatorr = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/div/div[1]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocatorr));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocatorr));*/
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+
         // Step 4: Re-locate the "Reason" menu to avoid stale element reference
         legTypeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(legTypeMenuLocator));
 
@@ -142,9 +149,11 @@ public class HomePage {
         WebElement rescheduledOption = wait.until(ExpectedConditions.visibilityOfElementLocated(rescheduledOptionLocator));
         rescheduledOption.click();
 
-        // Step 3: Wait until the page or specific content is loaded
+        /* Step 3: Wait until the page or specific content is loaded
         By pageContentLocatorrr = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[2]/div/div");
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocatorrr));
+*/
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
 
         // Step 4: Re-locate the "Reason" menu to avoid stale element reference
         reasonMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(reasonMenuLocator));
@@ -174,11 +183,13 @@ public class HomePage {
         By aeOptionLocator = By.xpath("//*[normalize-space(text())='AE']");
         WebElement aeOption = wait.until(ExpectedConditions.visibilityOfElementLocated(aeOptionLocator));
         aeOption.click();
-
+/*
         By pageContentLocator = By.xpath("//*[@id=\"wrapper\"]/div[2]/div[3]/div[2]/div[2]/div/div[1]");
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageContentLocator));
+*/
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
 
-         //assert selected option & Re-locate and check if "AE" is selected in the dropdown
+        //assert selected option & Re-locate and check if "AE" is selected in the dropdown
         countryZoneDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(countryZoneDropdownLocator));
         String selectedCountry = countryZoneDropdown.getText();
         try{
@@ -191,11 +202,40 @@ public class HomePage {
         }
     }
 
+    public void ResetAllSelectionsWithAssertion(WebDriver driver, SoftAssert softAssert) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Screenshot screenshotObject = new Screenshot(driver);
+     // Step 1: Click the "Reset" button
+        By resetButtonLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[2]/button");
+        WebElement resetButton = wait.until(ExpectedConditions.elementToBeClickable(resetButtonLocator));
+        resetButton.click();
+        // Step 2: Verify that "Leg Type" menu is reset to "All"
+        By legTypeMenuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[3]/span[2]/div/div/div[1]/div[1]");
+        WebElement legTypeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(legTypeMenuLocator));
+        String legTypeText = legTypeMenu.getText();
+        try {
+            softAssert.assertEquals(legTypeText, "All", "The 'Leg Type' menu is not reset to 'All'.");
+        }catch (AssertionError e) {
+            screenshotObject.takeScreenshot("reset_Failure");
+            throw e;
+        }
+        // Step 3: Verify that "Reason" menu is reset to "All"
+        By reasonMenuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[4]/span[2]/div/div/div[1]/div[1]");
+        WebElement reasonMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(reasonMenuLocator));
+        String reasonText = reasonMenu.getText();
+        try {
+            softAssert.assertEquals(reasonText, "All", "The 'Reason' menu is not reset to 'All'.");
+        }catch (AssertionError e) {
+            screenshotObject.takeScreenshot("reset_Failure");
+            throw e;
+        }
+    }
 
 
     public void ClickOnResultItem(WebDriver driver){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-    WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[2]/div[3]/div[2]/div[2]/table/tbody/tr/td[1]")));
+        //click on third result
+    WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[2]/div[3]/div[2]/div[2]/table/tbody/tr[3]/td[1]")));
         try {
         targetElement.click();
     } catch (ElementNotInteractableException e) {

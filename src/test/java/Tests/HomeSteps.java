@@ -60,6 +60,8 @@ public class HomeSteps {
 
     @And("the user clicks on the result item")
     public void the_user_clicks_on_the_result_item() {
+       // homePge.ClickOnResultItem(driver);
+        homePge.ResetAllSelectionsWithAssertion(driver,softAssert);
         homePge.ClickOnResultItem(driver);
     }
 

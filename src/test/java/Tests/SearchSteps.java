@@ -28,7 +28,7 @@ public class SearchSteps {
     }
 
     @When("I enter a search term")
-    public void iEnterASearchTerm() {
+    public void iEnterASearchTerm() throws InterruptedException {
         searchpge.EnterSearchTerm(driver);
     }
 
@@ -40,6 +40,7 @@ public class SearchSteps {
     @Then("I should see search results")
     public void iShouldSeeSearchResults() {
         searchpge.SearchResults(driver,softAssert);
+
     }
 
     @And("I return to the homepage again")
