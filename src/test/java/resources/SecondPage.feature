@@ -9,3 +9,4 @@ Feature: Verify Client Reference and Request Details
     And the type should be B2C Delivery
     And I return to the homepage
     And I should see the homepage logo
+    And I soft assert all

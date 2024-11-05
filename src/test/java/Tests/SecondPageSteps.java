@@ -20,19 +20,6 @@ import static Hooks.hooks.driver;
 public class SecondPageSteps {
     SecondSelectedPage secPage = new SecondSelectedPage();
     SoftAssert softAssert = new SoftAssert();
-    /*@Test(dependsOnMethods = "Tests.Home.loginTest")
-    @Description("Second test to verify client reference and request details")
-    @Severity(SeverityLevel.NORMAL)
-    public void SecTest() throws InterruptedException {
-        System.out.println("Driver before use in SecTest: " + driver);
-        if (driver == null) {
-            throw new RuntimeException("WebDriver is not initialized in SecTest!");
-        }
-        SecPge.AssertClientReferencecIs_NAE584747(driver);
-        SecPge.AssertClientRequestIsCR04N01M10244980554(driver);
-        SecPge.AssertStatusIsPending(driver);
-        SecPge.AssertTypeIsb2cdelivery(driver);
-    }*/
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {
         System.out.println("Driver before use in SecTest: " + driver);
@@ -40,10 +27,6 @@ public class SecondPageSteps {
             throw new RuntimeException("WebDriver is not initialized in SecTest!");
         }
     }
-    //select the test-a1 from the list
-    /*write its code*/
-
-
 
    @When("the user verifies the client reference")
     public void theUserVerifiesTheClientReference() {
@@ -79,5 +62,9 @@ public class SecondPageSteps {
         WebElement homeLogo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#wrapper > div.jsx-1086676435.headerCtr > div.jsx-1086676435.logoSearchWrapper")));
         softAssert.assertTrue(homeLogo.isDisplayed(),"Homepage logo is not visible.");
 
+    }
+  @And("I soft assert all")
+    public void I_soft_asser_all() {
+        softAssert.assertAll();
     }
 }
