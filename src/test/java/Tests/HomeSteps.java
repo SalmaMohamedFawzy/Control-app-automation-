@@ -53,9 +53,17 @@ public class HomeSteps {
        homePge.SelectReasonAndAssert(driver,softAssert);
     }
 
-        @And("the country should be AE")
+    @And("the country should be AE")
     public void CountryAEselectionAndAssertion() {
         homePge.SelectAEcountryZoneAndAssert(driver,softAssert);
+    }
+    @And("the hub sector should be TEST-A1-S")
+    public void HubSectorselectionAndAssertion() {
+        homePge.SelectHubSectorAndAssert(driver,softAssert);
+    }
+    @And("the pickup type should be Regular")
+    public void PickupTypeselectionAndAssertion() {
+        homePge.SelectPickupTypeAndAssert(driver,softAssert);
     }
 
     @And("the user clicks on the result item")

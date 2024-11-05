@@ -10,5 +10,7 @@ Feature: Homepage Login and Verification
     And the leg Type should be Delivery
     And the reason should be rescheduled
     And the country should be AE
+    And the hub sector should be TEST-A1-S
+    And the pickup type should be Regular
     And the user clicks on the result item
     And complete soft assertion check

@@ -202,6 +202,61 @@ public class HomePage {
         }
     }
 
+    public void SelectHubSectorAndAssert(WebDriver driver,SoftAssert softAssert){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Screenshot screenshotObject = new Screenshot(driver);
+     // Step 1: Click on the "Hub Sector" menu to reveal options
+        By hubSectorMenuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[6]/span[2]/div/div/div[1]/div[1]");
+        WebElement hubSectorMenu = wait.until(ExpectedConditions.elementToBeClickable(hubSectorMenuLocator));
+        hubSectorMenu.click();
+
+        // Step 2: Select the "TEST-A1-S" option from the dropdown
+        By hubOptionLocator = By.xpath("//*[normalize-space(text())='TEST-A1-S']");
+        WebElement hubOption = wait.until(ExpectedConditions.elementToBeClickable(hubOptionLocator));
+        hubOption.click();
+
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+
+        // Step 3: Verify that "TEST-A1-S" is displayed in the "Hub Sector" menu
+        WebElement selectedHubSector = wait.until(ExpectedConditions.visibilityOfElementLocated(hubSectorMenuLocator));
+        String selectedHubText = selectedHubSector.getText();
+        try {
+            softAssert.assertTrue(selectedHubText.contains("TEST-A1-S"), "The selected hub is not displayed as 'TEST-A1-S'.");
+        }catch(AssertionError e)
+        {
+            screenshotObject.takeScreenshot("Hub_Sector_choice_Failure");
+            throw e;
+        }
+    }
+
+    public void SelectPickupTypeAndAssert(WebDriver driver,SoftAssert softAssert){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Screenshot screenshotObject = new Screenshot(driver);
+        // Step 1: Click on the menu to reveal options
+        By menuLocator = By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div[1]/div[2]/div[1]/div[7]/span[2]/div/div/div[1]/div[1]");
+        WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(menuLocator));
+        menu.click();
+
+        // Step 2: Select the "Regular" option from the dropdown
+        By regularOptionLocator = By.xpath("//*[normalize-space(text())='Regular']");
+        WebElement regularOption = wait.until(ExpectedConditions.elementToBeClickable(regularOptionLocator));
+        regularOption.click();
+
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+
+        // Step 3: Verify that "Regular" appears in the menu
+        WebElement selectedMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(menuLocator));
+        String selectedMenuText = selectedMenu.getText();
+        try {
+            softAssert.assertTrue(selectedMenuText.contains("Regular"), "The selected option is not displayed as 'Regular'.");
+        }catch(AssertionError e)
+        {
+            screenshotObject.takeScreenshot("Pickup_Type_Failure");
+            throw e;
+        }
+
+    }
+
     public void ResetAllSelectionsWithAssertion(WebDriver driver, SoftAssert softAssert) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Screenshot screenshotObject = new Screenshot(driver);
