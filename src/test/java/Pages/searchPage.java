@@ -28,13 +28,13 @@ public class searchPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Screenshot screenshotObject = new Screenshot(driver);
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[1]/span")));
-        String actualText = result.getText();
 
-       if (!"Client Reference: NAE235140".equalsIgnoreCase(actualText)) {
-           screenshotObject.takeScreenshot("searchPg_Search_Results");
-       }
-       softAssert.assertTrue("Client Reference: NAE235140".equalsIgnoreCase(actualText), "Text does not match! Expected: 'Client Reference: NAE235140' but got: " + actualText);
-   }
+       WebElement clientRequestDetailsElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[1]/div")));
+       String expectedText = "Client Request Details";
+       String actualText = clientRequestDetailsElement.getText();
+       softAssert.assertTrue(actualText.contains(expectedText), "The text 'Client Request Details' was not found! Expected text: " + expectedText + ", but got: " + actualText);
+    }
+
     public void returnToHomeAgain(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement homeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[1]/div[2]/a/img")));

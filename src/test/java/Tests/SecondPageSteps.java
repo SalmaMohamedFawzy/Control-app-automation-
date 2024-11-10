@@ -28,17 +28,7 @@ public class SecondPageSteps {
         }
     }
 
-   @When("the user verifies the client reference")
-    public void theUserVerifiesTheClientReference() {
-        secPage.AssertClientReferencecIs_NAE584747(driver,softAssert);
-    }
-
-    @And("the user verifies the client request details")
-    public void theUserVerifiesTheClientRequestDetails() {
-        secPage.AssertClientRequestIsCR04N01M10244980554(driver,softAssert);
-    }
-
-    @Then("the status should be Pending")
+    @When("the status should be Pending")
     public void theStatusShouldBePending() {
         secPage.AssertStatusIsPending(driver,softAssert);
     }
@@ -47,7 +37,15 @@ public class SecondPageSteps {
     public void theTypeShouldBeB2CDelivery() {
         secPage.AssertTypeIsb2cdelivery(driver,softAssert);
     }
-
+    @And("Assert attempts")
+    public void AsserAttempts() {
+        secPage.AssertAttempts(driver,softAssert);
+    }
+    @And("scroll down then assert packages")
+    public void ScrollDownAndAssertPckgs() {
+        secPage.ScrollDown(driver);
+        secPage.AssertPackages(driver,softAssert);
+    }
     //return to home
     @And("I return to the homepage")
     public void returnToHome() {
@@ -63,7 +61,7 @@ public class SecondPageSteps {
         softAssert.assertTrue(homeLogo.isDisplayed(),"Homepage logo is not visible.");
 
     }
-  @And("I soft assert all")
+  @Then("I soft assert all")
     public void I_soft_asser_all() {
         softAssert.assertAll();
     }
