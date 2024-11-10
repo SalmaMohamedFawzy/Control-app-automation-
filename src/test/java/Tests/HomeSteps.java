@@ -22,9 +22,9 @@ public class HomeSteps {
        homePge.GoToControlApp(driver);
    }
 
-    @When("the user logs in manually and select TEST-A1")
-    public void the_user_logs_in_manually_and_select_TESTA1() throws InterruptedException {
-        homePge.LoginManually(driver);
+    @When("the user logs in and select TEST-A1")
+    public void the_user_logs_in_manually_and_select_TESTA1() {
+        homePge.LoginWithSalmaCredentails(driver);
         homePge.ClickOnTEST_A1hub(driver);
     }
 
