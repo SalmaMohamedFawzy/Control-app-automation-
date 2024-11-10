@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.HomePage;
+import Pages.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,6 +13,7 @@ import static Hooks.hooks.driver;
 public class HomeSteps {
 
     HomePage homePge = new HomePage();
+    LoginPage loginPge =new LoginPage();
     SoftAssert softAssert = new SoftAssert();
 
    @Given("the user navigates to the control app")
@@ -24,7 +26,7 @@ public class HomeSteps {
 
     @When("the user logs in and select TEST-A1")
     public void the_user_logs_in_manually_and_select_TESTA1() {
-        homePge.LoginWithSalmaCredentails(driver);
+        loginPge.LoginWithSalmaCredentails(driver);
         homePge.ClickOnTEST_A1hub(driver);
     }
 

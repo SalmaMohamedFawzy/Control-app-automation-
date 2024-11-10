@@ -13,11 +13,10 @@ import java.time.Duration;
 
 public class searchPage {
 
-    public void EnterSearchTerm(WebDriver driver) throws InterruptedException {
+    public void EnterSearchTerm(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#wrapper > div.jsx-1086676435.headerCtr > div.jsx-1086676435.logoSearchWrapper > div > form > input")));
         searchBox.sendKeys("CR04N01M10242441623\n");
-        //Thread.sleep(1000);
     }
     public void ClickOnTheSearchIcon(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
