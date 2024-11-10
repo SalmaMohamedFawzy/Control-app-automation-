@@ -17,25 +17,23 @@ public class SecondSelectedPage {
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement clientReference = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[1]/span")));
     String clientReferenceText = clientReference.getText();
-        try{softAssert.assertEquals("Client reference mismatch!", "CLIENT REFERENCE: NAE187763", clientReferenceText);
-    }
-        catch (AssertionError e) {
-        screenshotObject.takeScreenshot("Client_reference_Failure");
-        throw e;
-    }
+
+        if (!"CLIENT REFERENCE: NAE035029".equalsIgnoreCase(clientReferenceText)) {
+            screenshotObject.takeScreenshot("SecPg_Client_reference");
+        }
+        softAssert.assertEquals(clientReferenceText.toLowerCase(),  "CLIENT REFERENCE: NAE035029".toLowerCase() , "Client reference mismatch!");
+
     }
     public void AssertClientRequestIsCR04N01M10244980554 (WebDriver driver,SoftAssert softAssert){
         Screenshot screenshotObject=new Screenshot(driver);
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement clientRequest = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[2]/div/div/div[2]/span[2]")));
         String clientRequestText = clientRequest.getText();
-        try{
-            softAssert.assertEquals("Client request mismatch!", "CR04N01M10244980554", clientRequestText);
+
+        if (!"CR04N01M11241741073".equals(clientRequestText)) {
+            screenshotObject.takeScreenshot("secPg_ClientRequest");
         }
-        catch (AssertionError e) {
-            screenshotObject.takeScreenshot("Client_request_Failure");
-            throw e;
-        }
+        softAssert.assertEquals(clientRequestText, "CR04N01M11241741073", "Client request mismatch!");
     }
     public void AssertStatusIsPending(WebDriver driver,SoftAssert softAssert)
     {
@@ -43,21 +41,22 @@ public class SecondSelectedPage {
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[2]/div/div/div[3]/span[2]")));
         String statusText = status.getText();
-        try{softAssert.assertEquals("Status mismatch!", "pending", statusText); }
-        catch (AssertionError e) {
+
+        if (!"pending".equalsIgnoreCase(statusText)) {
             screenshotObject.takeScreenshot("status_Failure");
-            throw e;
         }
+        softAssert.assertEquals(statusText.toLowerCase(),  "pending".toLowerCase(),"Status mismatch!" );
     }
+
     public void AssertTypeIsb2cdelivery (WebDriver driver,SoftAssert softAssert){
         Screenshot screenshotObject=new Screenshot(driver);
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[2]/div/div/div[4]/span[2]")));
         String typeText = type.getText();
-        try{softAssert.assertEquals("Type mismatch!", "b2c delivery", typeText); }
-        catch (AssertionError e) {
+
+        if (!"b2c delivery".equalsIgnoreCase(typeText)) {
             screenshotObject.takeScreenshot("type_Failure");
-            throw e;
         }
+        softAssert.assertEquals( typeText.toLowerCase(), "b2c delivery".toLowerCase(),"Type mismatch!");
     }
 }

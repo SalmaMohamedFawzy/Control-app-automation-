@@ -40,18 +40,4 @@ public class Screenshot {
             System.err.println("WebDriver exception while taking screenshot: " + e.getMessage());
         }
     }
-    // Method to clear the screenshots folder
-   /* private void clearScreenshotFolder() {
-        File screenshotDir = new File("src/screens/");
-        if (screenshotDir.exists()) {
-            try (DirectoryStream<Path> stream = Files.newDirectoryStream(screenshotDir.toPath())) {
-                for (Path filePath : stream) {
-                    Files.delete(filePath); // Delete each file in the folder
-                }
-                System.out.println("Screenshots folder cleared.");
-            } catch (IOException e) {
-                System.err.println("Failed to clear screenshots folder: " + e.getMessage());
-            }
-        }
-    }*/
 }

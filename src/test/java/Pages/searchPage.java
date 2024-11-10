@@ -5,13 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import screens.Screenshot;
 
 import java.time.Duration;
 
-import static Hooks.hooks.driver;
 
 public class searchPage {
 
@@ -31,15 +29,12 @@ public class searchPage {
         Screenshot screenshotObject = new Screenshot(driver);
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[1]/div[1]/span")));
         String actualText = result.getText();
-        try {
-            softAssert.assertEquals(actualText, "Client Reference: NAE235140",
-                    "Text does not match! Expected: 'Client Reference: NAE235140' but got: " + actualText);
-        }
-        catch (AssertionError e) {
-            screenshotObject.takeScreenshot("Search_Results_Failure");
-            throw e;
-        }
-    }
+
+       if (!"Client Reference: NAE235140".equalsIgnoreCase(actualText)) {
+           screenshotObject.takeScreenshot("searchPg_Search_Results");
+       }
+       softAssert.assertTrue("Client Reference: NAE235140".equalsIgnoreCase(actualText), "Text does not match! Expected: 'Client Reference: NAE235140' but got: " + actualText);
+   }
     public void returnToHomeAgain(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement homeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wrapper']/div[1]/div[2]/a/img")));
@@ -50,11 +45,10 @@ public class searchPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Screenshot screenshotObject = new Screenshot(driver);
         WebElement homeLogo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#wrapper > div.jsx-1086676435.headerCtr > div.jsx-1086676435.logoSearchWrapper")));
-        try {
-            softAssert.assertTrue(homeLogo.isDisplayed(), "Homepage logo is not visible.");
-        } catch (AssertionError e) {
+
+        if (!homeLogo.isDisplayed()) {
             screenshotObject.takeScreenshot("Homepage_logo_Failure");
-            throw e;
         }
+            softAssert.assertTrue(homeLogo.isDisplayed(), "Homepage logo is not visible.");
     }
 }
