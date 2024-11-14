@@ -39,6 +39,12 @@ public class SecondSelectedPage {
         }
         System.out.println("Total number of packages in the column: " + packageCount);
         softAssert.assertTrue(packageCount > 0, "No packages found in the column.");
+        //////////go to package and download report///////
+        WebElement airwayNumberElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[2]/div[2]/div[3]/div[2]/table/tbody/tr[1]/td[3]")));
+        airwayNumberElement.click();
+        ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+        WebElement downloadButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[2]/div/button")));
+        downloadButton.click();
     }
     public void AssertStatusIsPending(WebDriver driver,SoftAssert softAssert)
     {
