@@ -2,8 +2,8 @@
 <suite name="MySuite">
     <test name="Home Tests">
         <classes>
-            <class name="Tests.HomeSteps"/>
-            <class name="Tests.SecondPageSteps"/>
+            <class name="Tests.T01_HomeSteps"/>
+            <class name="Tests.T02_SecondPageSteps"/>
         </classes>
     </test>
 </suite>

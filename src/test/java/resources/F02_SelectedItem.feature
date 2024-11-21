@@ -1,5 +1,5 @@
 @test
-Feature: Verify Client Reference and Request Details
+Feature: Selected Item Verification
 
   Scenario: User verifies client reference and request details after logging in
     Given the user is logged in

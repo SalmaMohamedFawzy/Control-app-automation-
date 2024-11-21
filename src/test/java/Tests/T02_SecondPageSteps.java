@@ -1,6 +1,6 @@
 package Tests;
 
-import Pages.SecondSelectedPage;
+import Pages.P03_SelectedItemPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
@@ -17,8 +16,8 @@ import java.time.Duration;
 import static Hooks.hooks.driver;
 
 
-public class SecondPageSteps {
-    SecondSelectedPage secPage = new SecondSelectedPage();
+public class T02_SecondPageSteps {
+    P03_SelectedItemPage secPage = new P03_SelectedItemPage();
     SoftAssert softAssert = new SoftAssert();
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {

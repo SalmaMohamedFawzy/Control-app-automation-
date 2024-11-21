@@ -1,7 +1,7 @@
 package Tests;
 
-import Pages.HomePage;
-import Pages.LoginPage;
+import Pages.P02_HomePage;
+import Pages.P01_LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,10 +10,10 @@ import org.testng.asserts.SoftAssert;
 
 import static Hooks.hooks.driver;
 
-public class HomeSteps {
+public class T01_HomeSteps {
 
-    HomePage homePge = new HomePage();
-    LoginPage loginPge =new LoginPage();
+    P02_HomePage homePge = new P02_HomePage();
+    P01_LoginPage loginPge =new P01_LoginPage();
     SoftAssert softAssert = new SoftAssert();
 
    @Given("the user navigates to the control app")

@@ -10,10 +10,12 @@ import screens.Screenshot;
 import java.time.Duration;
 import java.util.List;
 
-public class HomePage {
+public class P02_HomePage {
 
     public void GoToControlApp(WebDriver driver) {
-        driver.navigate().to("https://express-control.noonstg.team/requests");
+       driver.navigate().to("https://express-control.noonstg.team/requests"); //  staging
+       // driver.navigate().to("https://express-control.noon.team/requests");   //prod
+
     }
 
     public void ClickOnTEST_A1hub(WebDriver driver) {
@@ -21,6 +23,8 @@ public class HomePage {
         // Step 1: Click the dropdown to reveal the list
         By dropdownMenuLocator = By.xpath("//*[@id='wrapper']/div[1]/div[3]/div[1]/div/div/div/div[1]/div[1]");
         WebElement dropdownMenu = wait.until(ExpectedConditions.elementToBeClickable(dropdownMenuLocator));
+        String currentSelection = dropdownMenu.getText().trim();
+        if (!"TEST-A1".equalsIgnoreCase(currentSelection)){
         dropdownMenu.click();
 
         // Step 2: Select the "TEST-A1" option
@@ -29,6 +33,9 @@ public class HomePage {
         testA1Option.click();
 
         wait.until(ExpectedConditions.textToBePresentInElement(dropdownMenu, "TEST-A1"));
+        }else {
+            System.out.println("TEST-A1 is already selected, no action taken.");
+        }
     }
 
     public void waitHubMenuVisiblityANDassertThatHubIsTEST_A1(WebDriver driver, SoftAssert softAssert) {

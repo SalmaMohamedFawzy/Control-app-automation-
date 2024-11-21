@@ -11,7 +11,7 @@ import screens.Screenshot;
 import java.time.Duration;
 import java.util.List;
 
-public class SecondSelectedPage {
+public class P03_SelectedItemPage {
 
     public void AssertAttempts(WebDriver driver,SoftAssert softAssert)
     {
@@ -43,8 +43,8 @@ public class SecondSelectedPage {
         WebElement airwayNumberElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[2]/div[2]/div[3]/div[2]/table/tbody/tr[1]/td[3]")));
         airwayNumberElement.click();
         ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-        WebElement downloadButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[2]/div/button")));
-        downloadButton.click();
+      /*  WebElement downloadButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='wrapper']/div[2]/div[3]/div[2]/div/div[2]/div/button")));
+        downloadButton.click();*/
     }
     public void AssertStatusIsPending(WebDriver driver,SoftAssert softAssert)
     {

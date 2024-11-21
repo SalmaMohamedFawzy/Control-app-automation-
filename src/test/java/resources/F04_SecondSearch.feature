@@ -1,11 +1,11 @@
 @test
-Feature: Search functionality
+Feature: Main Search functionality
 
   Scenario Outline: Search by various criteria and verify results (the small search box)
     Given Iam on the homepage again
     When I enter "<searchText>" in the search box
     Then I verify that the item or message "<expectedResult>" is displayed
-
+    And I Assert All
     Examples:
       | searchText            | expectedResult        |
       | PFB1830935005A        | Specific Item         |

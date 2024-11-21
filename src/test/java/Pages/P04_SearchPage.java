@@ -5,14 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
 import org.testng.asserts.SoftAssert;
 import screens.Screenshot;
 
 import java.time.Duration;
 
 
-public class searchPage {
+public class P04_SearchPage {
 
     public void EnterSearchTerm(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

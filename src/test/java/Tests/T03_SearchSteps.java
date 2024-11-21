@@ -1,24 +1,17 @@
 package Tests;
 
-import Pages.searchPage;
+import Pages.P04_SearchPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
-import screens.Screenshot;
-
-import java.time.Duration;
 
 import static Hooks.hooks.driver;
 
-public class SearchSteps {
+public class T03_SearchSteps {
     private SoftAssert softAssert = new SoftAssert();
-    searchPage searchpge=new searchPage();
+    P04_SearchPage searchpge=new P04_SearchPage();
     @Given("I am on the homepage")
     public void iAmOnTheHomepage() {
         System.out.println("Driver before use in search: " + driver);

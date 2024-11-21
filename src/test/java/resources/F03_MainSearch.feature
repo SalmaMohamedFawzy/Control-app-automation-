@@ -1,5 +1,5 @@
 @test
-Feature: Search Functionality
+Feature: Small second Search Functionality
   As a user
   I want to search for a term on the homepage
   So that I can see relevant search results
